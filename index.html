@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RecruiterPHP — Battle-Tested PHP Job Queue</title>
+    <meta name="description" content="A battle-tested PHP job queue manager. Billions of jobs processed in production since 2012. MongoDB-backed, fault-tolerant, with smart retry policies.">
+    <meta property="og:title" content="RecruiterPHP — Battle-Tested PHP Job Queue">
+    <meta property="og:description" content="Billions of jobs processed in production since 2012. MongoDB-backed PHP job queue with smart retry policies.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://recruiterphp.org">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/php.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+    <div class="container nav-inner">
+        <a href="/" class="logo">
+            <span class="logo-mark">⚡</span>
+            <span class="logo-text">RecruiterPHP</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#quickstart">Quick Start</a></li>
+            <li><a href="#ecosystem">Ecosystem</a></li>
+            <li><a href="https://recruiter.readthedocs.io/" target="_blank" rel="noopener">Docs</a></li>
+            <li>
+                <a href="https://github.com/recruiterphp" target="_blank" rel="noopener" class="nav-github">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                    GitHub
+                </a>
+            </li>
+        </ul>
+        <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+    <div class="container hero-inner">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Battle-Tested Since 2012
+            </div>
+            <h1 class="hero-title">
+                The PHP Job Queue<br>
+                <span class="gradient-text">That Never Loses</span><br>
+                a Job
+            </h1>
+            <p class="hero-subtitle">
+                Billions of jobs processed across two major production platforms.
+                MongoDB-backed, fault-tolerant, with smart retry policies and full job history.
+            </p>
+            <div class="hero-actions">
+                <a href="#quickstart" class="btn-primary">Get Started →</a>
+                <a href="https://github.com/recruiterphp/recruiter" target="_blank" rel="noopener" class="btn-secondary">View on GitHub</a>
+            </div>
+            <div class="hero-install">
+                <code class="install-cmd" id="install-cmd">composer require recruiterphp/recruiter</code>
+                <button class="copy-btn" id="copy-btn" onclick="copyInstall()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                    Copy
+                </button>
+            </div>
+        </div>
+        <div class="hero-code">
+            <div class="code-window">
+                <div class="code-window-bar">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                    <span class="code-window-title">EmailJob.php</span>
+                </div>
+                <pre><code class="language-php">class EmailJob implements Workable
+{
+    use WorkableBehaviour;
+
+    public function execute(): void
+    {
+        mail(
+            $this->parameters['email'],
+            $this->parameters['subject'],
+            $this->parameters['body']
+        );
+    }
+}
+
+// Enqueue it — fire and forget
+new EmailJob([
+    'email'   => 'user@example.com',
+    'subject' => 'Welcome!',
+    'body'    => 'Thanks for joining!',
+])
+    ->asJobOf($recruiter)
+    ->retryWithPolicy(
+        ExponentialBackoff::inHours(1, 3, 9)
+    )
+    ->inBackground()
+    ->execute();</code></pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats -->
+<div class="stats-bar">
+    <div class="container stats-grid">
+        <div class="stat fade-up">
+            <div class="stat-number gradient-text">1B+</div>
+            <div class="stat-label">Jobs Processed</div>
+        </div>
+        <div class="stat fade-up" style="--delay:0.1s">
+            <div class="stat-number gradient-text">12+</div>
+            <div class="stat-label">Years in Production</div>
+        </div>
+        <div class="stat fade-up" style="--delay:0.2s">
+            <div class="stat-number gradient-text">PHP 8.4</div>
+            <div class="stat-label">Modern PHP</div>
+        </div>
+        <div class="stat fade-up" style="--delay:0.3s">
+            <div class="stat-number gradient-text">0</div>
+            <div class="stat-label">Jobs Lost</div>
+        </div>
+    </div>
+</div>
+
+<!-- Features -->
+<section class="section features" id="features">
+    <div class="container">
+        <div class="section-header fade-up">
+            <div class="section-label">Why Recruiter</div>
+            <h2>Built for Production Reality</h2>
+            <p>Designed for the hardest jobs — where losing work is never an option.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card fade-up">
+                <div class="feature-icon">🚀</div>
+                <h3>Production Proven</h3>
+                <p>Born at Onebip in 2012 for mobile payment processing — where duplicate or dropped jobs mean financial loss. Adopted by EasyWelfare in 2018, processing billions of welfare jobs.</p>
+            </div>
+            <div class="feature-card fade-up" style="--delay:0.05s">
+                <div class="feature-icon">🔄</div>
+                <h3>Smart Retry Policies</h3>
+                <p>Exponential backoff, linear delays, and custom strategies. Failed jobs retry intelligently without overwhelming downstream systems or violating rate limits.</p>
+            </div>
+            <div class="feature-card fade-up" style="--delay:0.1s">
+                <div class="feature-icon">🏷️</div>
+                <h3>Multi-Queue &amp; Tagging</h3>
+                <p>Route jobs to specific workers using tags and filters. Run multiple logical queues in a single deployment — prioritize critical work without separate infrastructure.</p>
+            </div>
+            <div class="feature-card fade-up" style="--delay:0.15s">
+                <div class="feature-icon">📊</div>
+                <h3>Full Job History</h3>
+                <p>Every execution is tracked: start time, end time, result, retry count, error details. Built-in analytics make debugging and monitoring straightforward.</p>
+            </div>
+            <div class="feature-card fade-up" style="--delay:0.2s">
+                <div class="feature-icon">🛡️</div>
+                <h3>Fault Tolerant</h3>
+                <p>Graceful shutdown, POSIX signal handling, and crash recovery built in. Jobs are never silently dropped. Workers recover automatically from unexpected failures.</p>
+            </div>
+            <div class="feature-card fade-up" style="--delay:0.25s">
+                <div class="feature-icon">⚡</div>
+                <h3>MongoDB Native</h3>
+                <p>Leverages MongoDB's atomic operations, indexes, and TTL collections for efficiency at scale. No ORM overhead, native BSON serialization, and distributed-safe locking.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Start -->
+<section class="section quickstart-section" id="quickstart">
+    <div class="container">
+        <div class="section-header fade-up">
+            <div class="section-label">Quick Start</div>
+            <h2>Up and Running in Minutes</h2>
+            <p>From zero to a working job queue in three steps.</p>
+        </div>
+        <div class="quickstart-steps">
+            <div class="step fade-up">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Install via Composer</h3>
+                    <div class="code-block">
+                        <pre><code class="language-bash">composer require recruiterphp/recruiter</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="step fade-up" style="--delay:0.1s">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Define Your Job</h3>
+                    <div class="code-block">
+                        <pre><code class="language-php">use Recruiter\Workable;
+use Recruiter\WorkableBehaviour;
+
+class ProcessOrderJob implements Workable
+{
+    use WorkableBehaviour;
+
+    public function execute(): void
+    {
+        $orderId = $this->parameters['order_id'];
+        // Your job logic here...
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="step fade-up" style="--delay:0.2s">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Enqueue &amp; Start a Worker</h3>
+                    <div class="code-block">
+                        <pre><code class="language-php">// Enqueue a job
+new ProcessOrderJob(['order_id' => 42])
+    ->asJobOf($recruiter)
+    ->retryWithPolicy(ExponentialBackoff::inHours(1, 3, 9))
+    ->inBackground()
+    ->execute();
+
+// In a separate process — start the worker
+$worker = $recruiter->hire();
+$worker->workForever();</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="quickstart-cta fade-up">
+            <a href="https://recruiter.readthedocs.io/" target="_blank" rel="noopener" class="btn-primary btn-large">
+                Read the Full Documentation →
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Ecosystem -->
+<section class="section ecosystem-section" id="ecosystem">
+    <div class="container">
+        <div class="section-header fade-up">
+            <div class="section-label">The Ecosystem</div>
+            <h2>Six Focused Libraries</h2>
+            <p>Each package is independently available, battle-tested, and usable in any PHP project — with or without Recruiter.</p>
+        </div>
+        <div class="ecosystem-grid">
+
+            <div class="eco-card eco-card-main fade-up">
+                <div class="eco-header">
+                    <div class="eco-icon">⚡</div>
+                    <div>
+                        <h3 class="eco-name">recruiter</h3>
+                        <div class="eco-package">recruiterphp/recruiter</div>
+                    </div>
+                    <span class="eco-badge">Core</span>
+                </div>
+                <p class="eco-description">The battle-tested PHP job queue. MongoDB-backed persistence, smart retry policies, full job history, multi-queue support, and fault-tolerant workers.</p>
+                <div class="eco-links">
+                    <a href="https://github.com/recruiterphp/recruiter" target="_blank" rel="noopener" class="eco-link-primary">GitHub →</a>
+                    <a href="https://recruiter.readthedocs.io/" target="_blank" rel="noopener" class="eco-link-secondary">Docs</a>
+                    <a href="https://packagist.org/packages/recruiterphp/recruiter" target="_blank" rel="noopener" class="eco-link-secondary">Packagist</a>
+                </div>
+            </div>
+
+            <div class="eco-card fade-up" style="--delay:0.05s">
+                <div class="eco-header">
+                    <div class="eco-icon">🕐</div>
+                    <div>
+                        <h3 class="eco-name">clock</h3>
+                        <div class="eco-package">recruiterphp/clock</div>
+                    </div>
+                </div>
+                <p class="eco-description">PSR-20 clock implementation with testable time manipulation and native MongoDB UTCDateTime support at microsecond precision.</p>
+                <ul class="eco-features">
+                    <li>PSR-20 compliant</li>
+                    <li>ManualClock for tests</li>
+                    <li>MongoDB UTCDateTime</li>
+                </ul>
+                <div class="eco-links">
+                    <a href="https://github.com/recruiterphp/clock" target="_blank" rel="noopener" class="eco-link-primary">GitHub →</a>
+                    <a href="https://packagist.org/packages/recruiterphp/clock" target="_blank" rel="noopener" class="eco-link-secondary">Packagist</a>
+                </div>
+            </div>
+
+            <div class="eco-card fade-up" style="--delay:0.1s">
+                <div class="eco-header">
+                    <div class="eco-icon">🔒</div>
+                    <div>
+                        <h3 class="eco-name">concurrency</h3>
+                        <div class="eco-package">recruiterphp/concurrency</div>
+                    </div>
+                </div>
+                <p class="eco-description">MongoDB-based distributed locking for coordinating concurrent operations across multiple processes and servers.</p>
+                <ul class="eco-features">
+                    <li>Distributed locking</li>
+                    <li>Configurable timeouts</li>
+                    <li>Process leadership</li>
+                </ul>
+                <div class="eco-links">
+                    <a href="https://github.com/recruiterphp/concurrency" target="_blank" rel="noopener" class="eco-link-primary">GitHub →</a>
+                    <a href="https://packagist.org/packages/recruiterphp/concurrency" target="_blank" rel="noopener" class="eco-link-secondary">Packagist</a>
+                </div>
+            </div>
+
+            <div class="eco-card fade-up" style="--delay:0.15s">
+                <div class="eco-header">
+                    <div class="eco-icon">⚙️</div>
+                    <div>
+                        <h3 class="eco-name">geezer</h3>
+                        <div class="eco-package">recruiterphp/geezer</div>
+                    </div>
+                </div>
+                <p class="eco-description">Tools for building robust long-running PHP processes — POSIX signal handling, graceful shutdown, and memory-aware execution loops.</p>
+                <ul class="eco-features">
+                    <li>Signal handling (POSIX)</li>
+                    <li>Graceful shutdown</li>
+                    <li>Memory limits</li>
+                </ul>
+                <div class="eco-links">
+                    <a href="https://github.com/recruiterphp/geezer" target="_blank" rel="noopener" class="eco-link-primary">GitHub →</a>
+                    <a href="https://packagist.org/packages/recruiterphp/geezer" target="_blank" rel="noopener" class="eco-link-secondary">Packagist</a>
+                </div>
+            </div>
+
+            <div class="eco-card fade-up" style="--delay:0.2s">
+                <div class="eco-header">
+                    <div class="eco-icon">💎</div>
+                    <div>
+                        <h3 class="eco-name">precious</h3>
+                        <div class="eco-package">recruiterphp/precious</div>
+                    </div>
+                </div>
+                <p class="eco-description">Elegant value object library for PHP. Immutable, structurally equal, with rich type validation and minimal boilerplate.</p>
+                <ul class="eco-features">
+                    <li>Immutable by design</li>
+                    <li>Structural equality</li>
+                    <li>Type validators</li>
+                </ul>
+                <div class="eco-links">
+                    <a href="https://github.com/recruiterphp/precious" target="_blank" rel="noopener" class="eco-link-primary">GitHub →</a>
+                    <a href="https://packagist.org/packages/recruiterphp/precious" target="_blank" rel="noopener" class="eco-link-secondary">Packagist</a>
+                </div>
+            </div>
+
+            <div class="eco-card fade-up" style="--delay:0.25s">
+                <div class="eco-header">
+                    <div class="eco-icon">📡</div>
+                    <div>
+                        <h3 class="eco-name">zeiss</h3>
+                        <div class="eco-package">recruiterphp/zeiss</div>
+                    </div>
+                </div>
+                <p class="eco-description">Event sourcing projection library for PHP. Build and maintain domain event projections with snapshot support, powered by geezer.</p>
+                <ul class="eco-features">
+                    <li>Event projections</li>
+                    <li>Snapshot support</li>
+                    <li>Production ready</li>
+                </ul>
+                <div class="eco-links">
+                    <a href="https://github.com/recruiterphp/zeiss" target="_blank" rel="noopener" class="eco-link-primary">GitHub →</a>
+                    <a href="https://packagist.org/packages/recruiterphp/zeiss" target="_blank" rel="noopener" class="eco-link-secondary">Packagist</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Dependency graph -->
+        <div class="dep-graph fade-up">
+            <div class="dep-graph-title">Dependency Graph</div>
+            <div class="dep-graph-inner">
+                <div class="dep-node dep-node-main">recruiter</div>
+                <div class="dep-arrows">
+                    <span class="dep-arrow">→</span>
+                    <span class="dep-arrow">→</span>
+                    <span class="dep-arrow">→</span>
+                </div>
+                <div class="dep-nodes">
+                    <div class="dep-node">concurrency</div>
+                    <div class="dep-node">geezer</div>
+                    <div class="dep-node">clock</div>
+                </div>
+                <div class="dep-note">zeiss → geezer &nbsp;·&nbsp; geezer → concurrency &nbsp;·&nbsp; concurrency → clock</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Heritage / Timeline -->
+<section class="section heritage-section">
+    <div class="container">
+        <div class="section-header fade-up">
+            <div class="section-label">Production Heritage</div>
+            <h2>A Decade of Hard-Won Experience</h2>
+            <p>Not a weekend project. Forged in the heat of real production demands where failure has real costs.</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item fade-up">
+                <div class="timeline-marker">
+                    <div class="timeline-year">2012</div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-content">
+                    <h3>Born at Onebip</h3>
+                    <p>Created for a major mobile payments platform processing millions of jobs daily. The constraint was absolute: payments cannot be lost or duplicated. This shaped every architectural decision.</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-up" style="--delay:0.1s">
+                <div class="timeline-marker">
+                    <div class="timeline-year">2014</div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-content">
+                    <h3>Open Sourced</h3>
+                    <p>After two years of production validation, Recruiter was open sourced under the MIT license and made available to the broader PHP community.</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-up" style="--delay:0.2s">
+                <div class="timeline-marker">
+                    <div class="timeline-year">2018</div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-content">
+                    <h3>Adopted by EasyWelfare</h3>
+                    <p>A second major production deployment — employee benefits and welfare management, processing billions of jobs across the platform. Proven reliability at a new scale.</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-up" style="--delay:0.3s">
+                <div class="timeline-marker">
+                    <div class="timeline-year">2025</div>
+                    <div class="timeline-dot timeline-dot-active"></div>
+                </div>
+                <div class="timeline-content">
+                    <h3>Modernized for PHP 8.4</h3>
+                    <p>Major modernization bringing strict types, readonly properties, enums, and full PHP 8.4 support. The battle-tested core preserved; the surface area brought into the modern era.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="cta-glow"></div>
+    <div class="container">
+        <h2 class="fade-up">Ready to Never Lose a Job?</h2>
+        <p class="fade-up" style="--delay:0.1s">
+            Join the production systems that have trusted Recruiter with their most critical background work.
+        </p>
+        <div class="cta-actions fade-up" style="--delay:0.2s">
+            <a href="https://recruiter.readthedocs.io/" target="_blank" rel="noopener" class="btn-primary btn-large">
+                Read the Docs →
+            </a>
+            <a href="https://github.com/recruiterphp/recruiter" target="_blank" rel="noopener" class="btn-secondary btn-large">
+                GitHub
+            </a>
+            <a href="https://packagist.org/packages/recruiterphp/recruiter" target="_blank" rel="noopener" class="btn-ghost btn-large">
+                Packagist
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container footer-inner">
+        <div class="footer-brand">
+            <div class="logo footer-logo">
+                <span class="logo-mark">⚡</span>
+                <span class="logo-text">RecruiterPHP</span>
+            </div>
+            <p>Battle-tested PHP job queue.<br>Open source · MIT License.</p>
+            <a href="https://github.com/recruiterphp" target="_blank" rel="noopener" class="footer-github">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                recruiterphp on GitHub
+            </a>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Core</h4>
+                <ul>
+                    <li><a href="https://github.com/recruiterphp/recruiter">recruiter</a></li>
+                    <li><a href="https://recruiter.readthedocs.io/">Documentation</a></li>
+                    <li><a href="https://packagist.org/packages/recruiterphp/recruiter">Packagist</a></li>
+                    <li><a href="https://github.com/recruiterphp/recruiter/blob/main/CHANGELOG.md">Changelog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ecosystem</h4>
+                <ul>
+                    <li><a href="https://github.com/recruiterphp/clock">clock</a></li>
+                    <li><a href="https://github.com/recruiterphp/concurrency">concurrency</a></li>
+                    <li><a href="https://github.com/recruiterphp/geezer">geezer</a></li>
+                    <li><a href="https://github.com/recruiterphp/precious">precious</a></li>
+                    <li><a href="https://github.com/recruiterphp/zeiss">zeiss</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="https://github.com/recruiterphp">GitHub Org</a></li>
+                    <li><a href="https://github.com/recruiterphp/recruiter/issues">Issues</a></li>
+                    <li><a href="https://github.com/recruiterphp/recruiter/discussions">Discussions</a></li>
+                    <li><a href="https://github.com/recruiterphp/recruiter/blob/main/LICENSE">License (MIT)</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <p>© 2012–2025 RecruiterPHP Contributors · Released under the MIT License</p>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
