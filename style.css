@@ -935,7 +935,11 @@ pre code { font-size: .84375rem; line-height: 1.75; }
   .nav-hamburger { display: flex; }
   .nav-github { margin-left: 0; }
 
-  .hero { padding: 60px 0 44px; }
+  .hero { padding: 60px 0 44px; overflow: hidden; }
+  .hero-title { font-size: clamp(2rem, 10vw, 2.75rem); }
+  .hero-install { max-width: 100%; overflow: hidden; }
+  .install-cmd { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .hero-code { display: none; }
   .hero-actions { flex-direction: column; }
   .hero-actions .btn-primary,
   .hero-actions .btn-secondary { justify-content: center; }
