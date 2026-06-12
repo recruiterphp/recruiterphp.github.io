@@ -424,7 +424,6 @@ pre code { font-size: .84375rem; line-height: 1.75; }
   overflow: hidden;
   box-shadow: var(--shadow-card);
 }
-}
 
 .code-window-bar {
   display: flex;
