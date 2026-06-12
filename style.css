@@ -936,16 +936,23 @@ pre code { font-size: .84375rem; line-height: 1.75; }
 
   .hero { padding: 60px 0 44px; overflow: hidden; }
   .hero-title { font-size: clamp(2rem, 10vw, 2.75rem); }
-  .hero-install { max-width: 100%; overflow: hidden; }
-  .install-cmd { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .hero-content { min-width: 0; width: 100%; }
+  .hero-install { display: flex; max-width: 100%; overflow: hidden; }
+  .install-cmd { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; flex: 1; }
   .hero-code { display: none; }
   .hero-actions { flex-direction: column; }
   .hero-actions .btn-primary,
-  .hero-actions .btn-secondary { justify-content: center; }
+  .hero-actions .btn-secondary { justify-content: center; width: 100%; }
 
   .features-grid { grid-template-columns: 1fr; }
-  .ecosystem-grid { grid-template-columns: 1fr; }
-  .eco-card-main { grid-column: span 1; }
+  .step-content { min-width: 0; }
+  .code-block pre { overflow-x: auto; }
+  .stat-number { font-size: 2rem; }
+  .ecosystem-grid { grid-template-columns: repeat(2, 1fr); }
+  .eco-card-main { grid-column: span 2; }
+  .eco-features { display: none; }
+  .eco-card { padding: 16px; }
+  .eco-description { margin-bottom: 10px; }
 
   .dep-graph-inner { flex-direction: column; align-items: flex-start; }
   .dep-arrows { flex-direction: row; }
@@ -960,5 +967,5 @@ pre code { font-size: .84375rem; line-height: 1.75; }
   .container { padding: 0 16px; }
   .cta-actions { flex-direction: column; align-items: stretch; }
   .cta-actions > * { justify-content: center; }
-  .section { padding: 72px 0; }
+  .section { padding: 56px 0; }
 }
