@@ -579,6 +579,7 @@ pre code { font-size: .84375rem; line-height: 1.75; }
   padding: 24px;
   display: flex;
   flex-direction: column;
+  min-width: 0;
   transition: border-color .2s, transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s;
 }
 .eco-card:hover {
@@ -948,11 +949,12 @@ pre code { font-size: .84375rem; line-height: 1.75; }
   .step-content { min-width: 0; }
   .code-block pre { overflow-x: auto; }
   .stat-number { font-size: 2rem; }
-  .ecosystem-grid { grid-template-columns: repeat(2, 1fr); }
+  .ecosystem-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .eco-card-main { grid-column: span 2; }
   .eco-features { display: none; }
   .eco-card { padding: 16px; }
   .eco-description { margin-bottom: 10px; }
+  .eco-package { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
   .dep-graph-inner { flex-direction: column; align-items: flex-start; }
   .dep-arrows { flex-direction: row; }
