@@ -423,12 +423,7 @@ pre code { font-size: .84375rem; line-height: 1.75; }
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-card);
-  animation: float 7s ease-in-out infinite;
 }
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-10px); }
 }
 
 .code-window-bar {
@@ -944,7 +939,6 @@ pre code { font-size: .84375rem; line-height: 1.75; }
   .hero-actions { flex-direction: column; }
   .hero-actions .btn-primary,
   .hero-actions .btn-secondary { justify-content: center; }
-  .code-window { animation: none; }
 
   .features-grid { grid-template-columns: 1fr; }
   .ecosystem-grid { grid-template-columns: 1fr; }
